@@ -1,0 +1,11 @@
+/*-- Vendor --*/
+@import "~bootstrap/scss/bootstrap";
+
+/*-- Shared Styling --*/
+@import "_colour.scss";
+@import "_mixins.scss";
+@import "_typography.scss";
+@import "_variables.scss";
+
+/*-- Pages --*/
+@import "/pages/_home.scss";

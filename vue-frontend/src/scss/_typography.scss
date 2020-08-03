@@ -1,0 +1,89 @@
+@mixin font-size($size) {
+  font-size: $size * 1px;
+  font-size: $size * 0.1rem;
+}
+
+/* Size Application */
+html {
+  text-rendering: optimizeLegibility;
+  font-size: 62.5%;
+}
+
+p{
+  @include font-size(16);
+  margin-bottom: 15px;
+  line-height: 1.4;
+  @include media-breakpoint-only(xs) {
+    @include font-size(15);
+    margin-bottom: 10px;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: 700;
+  margin-bottom: 20px;
+  line-height: 1.15;
+  @include media-breakpoint-only(sm) {
+    margin-bottom: 15px;
+  }
+  @include media-breakpoint-only(xs) {
+    margin-bottom: 10px;
+  }
+}
+
+h1 {
+  @include font-size(56);
+  @include media-breakpoint-only(sm) {
+    @include font-size(52);
+  }
+  @include media-breakpoint-only(xs) {
+    @include font-size(50);
+  }
+}
+
+h2 {
+  @include font-size(48);
+  @include media-breakpoint-only(sm) {
+    @include font-size(45);
+  }
+  @include media-breakpoint-only(xs) {
+    @include font-size(40);
+  }
+}
+
+h3 {
+  @include font-size(32);
+  @include media-breakpoint-only(sm) {
+    @include font-size(28);
+  }
+  @include media-breakpoint-only(xs) {
+    @include font-size(26);
+  }
+}
+
+h4 {
+  @include font-size(25);
+  @include media-breakpoint-only(sm) {
+    @include font-size(24);
+  }
+  @include media-breakpoint-only(xs) {
+    @include font-size(22);
+  }
+}
+
+h5 {
+  @include font-size(21);
+  @include media-breakpoint-only(sm) {
+    @include font-size(20);
+  }
+  @include media-breakpoint-only(xs) {
+    @include font-size(19);
+  }
+}
+
+h6 {
+  @include font-size(18);
+  @include media-breakpoint-only(xs) {
+    @include font-size(17);
+  }
+}
