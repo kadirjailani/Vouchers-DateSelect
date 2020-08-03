@@ -10,9 +10,10 @@ export class VouchersController {
         @Body('type') voucherType: string,
         @Body('price') voucherPrice: number,
         @Body('startDate') voucherStartDate: string,
-        @Body('endDate') voucherEndDate: string
+        @Body('endDate') voucherEndDate: string,
+        @Body('subscribeDates') voucherSubscribeDates: string[]
     ) {
-        const generatedID = this.vouchersService.addVouchers(voucherType, voucherPrice, voucherStartDate, voucherEndDate);
+        const generatedID = this.vouchersService.addVouchers(voucherType, voucherPrice, voucherStartDate, voucherEndDate, voucherSubscribeDates);
         return { id: generatedID };
     }
 

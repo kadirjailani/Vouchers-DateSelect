@@ -6,10 +6,10 @@ import { Voucher } from "./voucher.model";
 export class VouchersServices {
     private vouchers: Voucher[] = [];
 
-    addVouchers(type: string, price: number, startDate: string, endDate: string) {
+    addVouchers(type: string, price: number, startDate: string, endDate: string, subscribeDates: string[]) {
 
         const id = Date.now().toString();
-        const newVoucher = new Voucher(id, type, price, startDate, endDate);
+        const newVoucher = new Voucher(id, type, price, startDate, endDate, subscribeDates);
         this.vouchers.push(newVoucher);
         return id;
     }

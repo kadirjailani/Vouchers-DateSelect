@@ -4,6 +4,7 @@ export class Voucher {
         public type: string, 
         public price: number,
         public startDate: string,
-        public endDate: string
+        public endDate: string,
+        public subscribeDates: string[]
         ) {}
 }

@@ -1167,18 +1167,18 @@
         "affectsGlobalScope": false
       },
       "../src/voucher/voucher.model.ts": {
-        "version": "ee5665cc682eb5fcbbcea30986d4ab6c0eb81a0018ea7e7f919aba4344cc8ef6",
-        "signature": "ab27042bab9678ac80455427e72516ecd2b0f736e5ecead82b1117234d383be7",
+        "version": "90283e52121f6ae28980b7a3e0401747ab43bf0b12f8f0130aef15c1f2aa2569",
+        "signature": "0fe225f708c9bcf2d385e0cef462a4974f1d026d2ff762d40e60789e75b040fe",
         "affectsGlobalScope": false
       },
       "../src/voucher/vouchers.service.ts": {
-        "version": "d5499c4bc590248c96575b6478f053c985a2fbefaf300b701ffd7b88378394cf",
-        "signature": "c06668a39e9126c4fbbc5748e058bf18759de2e1c3b41cdca4dca527a3aa6bce",
+        "version": "bec15160384b5c88594a3a5148f5f182d8347052d92007f473a8f95b6424e2ca",
+        "signature": "eb4abe30ca50b3be10cdea1baac5b569928d950646874ec07f213379861e2234",
         "affectsGlobalScope": false
       },
       "../src/voucher/vouchers.controller.ts": {
-        "version": "1e00346d1b5cb97db286cc331be1e48edfcbe1e97a51e9f8c305a1f6c487b13f",
-        "signature": "f5be5a3040799f031e3bc72fb8a5794a57f3a599298e3481c6202b5b02274dbe",
+        "version": "14b43af18fea9431187b933598168871c47ffcf5d4262147c31ed0ece0861382",
+        "signature": "c097330b41116bb149fcbb5c98b631deb6122d1c6068d4885a5a75adc09bcb2c",
         "affectsGlobalScope": false
       },
       "../src/voucher/vouchers.module.ts": {

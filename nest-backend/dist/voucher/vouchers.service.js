@@ -13,9 +13,9 @@ let VouchersServices = class VouchersServices {
     constructor() {
         this.vouchers = [];
     }
-    addVouchers(type, price, startDate, endDate) {
+    addVouchers(type, price, startDate, endDate, subscribeDates) {
         const id = Date.now().toString();
-        const newVoucher = new voucher_model_1.Voucher(id, type, price, startDate, endDate);
+        const newVoucher = new voucher_model_1.Voucher(id, type, price, startDate, endDate, subscribeDates);
         this.vouchers.push(newVoucher);
         return id;
     }

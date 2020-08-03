@@ -20,18 +20,21 @@
 
     <!-- if user want to subscribe to weekly with selected period -->
     <div v-if="selected === 'weekly'">
-      <select v-model="selectedOption" class="browser-default custom-select custom-select-lg mb-3">
+      <select
+        v-model="optionWeeklySelected"
+        class="browser-default custom-select custom-select-lg mb-3"
+      >
         <option v-for="option in optionsWeekly" :value="option" v-bind:key="option.id">{{ option }}</option>
       </select>
     </div>
 
     <div v-else-if="selected === 'monthly'">
-      <p>If monthly</p>
+      <p>Subscription for 3 months</p>
     </div>
 
     <button
       class="btn btn-primary subs-button"
-      v-on:click="postPackageToServer"
+      v-on:click="subsThis"
       :disabled="selected===''"
     >Subscribe now</button>
   </div>
@@ -44,16 +47,21 @@ export default {
   data() {
     return {
       // greeting: "hello world",
-      todayDate: moment(),
+      // todayDate: moment(),
       selected: "",
       price: 30,
       optionsWeekly: [2, 4, 6, 8],
-      selectedOption: 2,
+      optionWeeklySelected: 2,
+      finalPrice: "",
+      startDate: moment().format("DD-MM-YYYY"),
+      endDate: "",
       selectedDateToSubs: [],
     };
   },
   methods: {
     subsThis: function () {
+      this.selectedDateToSubs = []; // Clear all previous date's array
+
       switch (this.selected) {
         case "daily":
           this.dailySubs();
@@ -64,15 +72,18 @@ export default {
         case "monthly":
           this.monthlySubs();
       }
+
+      this.postPackageToServer(); // Post to server
     },
     dailySubs: function () {
-      console.log("daily");
+      this.finalPrice = this.price;
+      this.endDate = this.startDate;
+      this.selectedDateToSubs.push(this.startDate);
     },
     weeklySubs: function () {
-      // let start = moment();
-      let end = moment().add(this.selectedOption * 7, "d");
+      let end = moment().add(this.optionWeeklySelected * 7, "d");
+      let arr = [];
 
-      var arr = [];
       // Get "next" tuesday
       let tmp = moment().clone().day(2);
 
@@ -82,10 +93,9 @@ export default {
         this.selectedDateToSubs.push(tmp.format("DD-MM-YYYY"));
       }
 
-      let finalPrice = this.price * this.selectedDateToSubs.length;
-      console.log(this.selectedDateToSubs, finalPrice);
-
-      this.selectedDateToSubs = []; // empty this array for future action
+      let getFinalPrice = this.price * this.selectedDateToSubs.length;
+      this.finalPrice = getFinalPrice;
+      this.endDate = end.format("DD-MM-YYYY");
     },
     monthlySubs: function () {
       let end = moment().add(3, "M");
@@ -97,37 +107,37 @@ export default {
         this.selectedDateToSubs.push(tmp.format("DD-MM-YYYY"));
       }
 
-      let finalPrice = this.price * this.selectedDateToSubs.length;
-      console.log(this.selectedDateToSubs, finalPrice);
-
-      this.selectedDateToSubs = []; // empty this array for future action
+      let getFinalPrice = this.price * this.selectedDateToSubs.length;
+      this.finalPrice = getFinalPrice;
+      this.endDate = end.format("DD-MM-YYYY");
     },
-    postPackageToServer: function () {
-      var myHeaders = new Headers();
+    postPackageToServer: async function () {
+      const url = "http://localhost:3000/";
+      const myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
-      myHeaders.append('Access-Control-Allow-Origin', '*');
+      myHeaders.append("Access-Control-Allow-Origin", "*");
 
-      var raw = JSON.stringify({
-        type: "monthly",
-        price: 30,
-        startDate: "04-08-2020",
-        endDate: "06-08-2020",
+      let raw = JSON.stringify({
+        type: this.selected,
+        price: this.finalPrice,
+        startDate: this.startDate,
+        endDate: this.endDate,
+        subscribeDate: this.selectedDateToSubs,
       });
 
-      var requestOptions = {
+      let requestOptions = {
         method: "POST",
         headers: myHeaders,
         body: raw,
         redirect: "follow",
       };
 
-      let postData = async() => {
-        let postingDating = await fetch("http://localhost:3000/vouchers", requestOptions)
-        .then((response) => response.text())
-        .then((result) => console.log(result, "Run"))
-        .catch((error) => console.log("error", error));
-      }
-      // console.log("run");
+      await fetch(`${url}vouchers`, requestOptions)
+        .then((response) => response.json())
+        .then((data) => console.log(data))
+        .catch((error) => console.log(error));
+
+      // console.log(raw);
     },
   },
 };

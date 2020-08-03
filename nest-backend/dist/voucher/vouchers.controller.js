@@ -19,8 +19,8 @@ let VouchersController = class VouchersController {
     constructor(vouchersService) {
         this.vouchersService = vouchersService;
     }
-    addVoucher(voucherType, voucherPrice, voucherStartDate, voucherEndDate) {
-        const generatedID = this.vouchersService.addVouchers(voucherType, voucherPrice, voucherStartDate, voucherEndDate);
+    addVoucher(voucherType, voucherPrice, voucherStartDate, voucherEndDate, voucherSubscribeDates) {
+        const generatedID = this.vouchersService.addVouchers(voucherType, voucherPrice, voucherStartDate, voucherEndDate, voucherSubscribeDates);
         return { id: generatedID };
     }
     getAllVouchers() {
@@ -33,8 +33,9 @@ __decorate([
     __param(1, common_1.Body('price')),
     __param(2, common_1.Body('startDate')),
     __param(3, common_1.Body('endDate')),
+    __param(4, common_1.Body('subscribeDates')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, Number, String, String]),
+    __metadata("design:paramtypes", [String, Number, String, String, Array]),
     __metadata("design:returntype", void 0)
 ], VouchersController.prototype, "addVoucher", null);
 __decorate([

@@ -4,5 +4,6 @@ export declare class Voucher {
     price: number;
     startDate: string;
     endDate: string;
-    constructor(id: string, type: string, price: number, startDate: string, endDate: string);
+    subscribeDates: string[];
+    constructor(id: string, type: string, price: number, startDate: string, endDate: string, subscribeDates: string[]);
 }
